@@ -1,0 +1,20 @@
+{
+  "prompts": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "label": "项目名称"
+    },
+    "description": {
+      "type": "string",
+      "required": true,
+      "label": "项目描述",
+      "default": "A Vue.js project"
+    },
+    "author": {
+      "type": "string",
+      "label": "作者"
+    }
+  },
+  "completeMessage": ""
+}
