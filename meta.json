@@ -9,7 +9,7 @@
       "type": "string",
       "required": true,
       "label": "项目描述",
-      "default": "A Vue.js project"
+      "default": "基础项目"
     },
     "author": {
       "type": "string",
