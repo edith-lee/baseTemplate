@@ -1,20 +1,5 @@
 {
   "prompts": {
-    "name": {
-      "type": "string",
-      "required": true,
-      "label": "项目名称"
-    },
-    "description": {
-      "type": "string",
-      "required": true,
-      "label": "项目描述",
-      "default": "基础项目"
-    },
-    "author": {
-      "type": "string",
-      "label": "作者"
-    }
   },
   "completeMessage": ""
 }
