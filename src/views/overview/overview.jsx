@@ -2,19 +2,27 @@ import React from 'react';
 import "./overview.less"
 import ScollTable from './scollTable'
 import ReactEcharts from "echarts-for-react";
+import moment from 'moment'
 let AMap = window.AMap;
 class Overview extends React.Component {
     state = {
         info: {},  //很多数据..
         todayInfo: {},  //当日的数据
-        rankList: [],  //学校预警排名
-        echartsOptions: {}
+        rankList: [
+            {cname:'xxxxx学校',count:222},
+            {cname:'yyyyy学校',count:200},
+            {cname:'zzzzz学校',count:188},
+            {cname:'aaaaa学校',count:150},
+        ],  //学校预警排名
+        echartsOptions: {},
+        statistics:{}
     };
     map = {};
     componentDidMount = () => {
-       
-            this.setMap();
-            this.setEchartsOption();
+
+        this.setMap();
+        this.setEchartsOption();
+        this.statistics();
     }
     // 设置地图
     setMap = () => {
@@ -27,7 +35,6 @@ class Overview extends React.Component {
             viewMode: "3D", //使用3D视图
         });
     };
-    
     // 月度抽查完成率echarts配置
     setEchartsOption = () => {
         let echartsOptions = this.state.echartsOptions;
@@ -200,49 +207,110 @@ class Overview extends React.Component {
             echartsOptions
         })
     }
+    statistics = () => {
+        let statistics = {
+            legend: {
+                data: ["XX数", "YY数", "ZZ数"],
+                orient: "horizontal",
+                textStyle:{
+                    color:'#fff'
+                },
+                top: 0,
+                right: 0,
+                icon: "path://M597.333333 1024a512 512 0 1 1 512-512 512 512 0 0 1-512 512z m0-914.2784A402.2784 402.2784 0 1 0 999.611733 512 402.2784 402.2784 0 0 0 597.333333 109.7216zM597.333333 768a256 256 0 1 1 256-256 256 256 0 0 1-256 256z m0-402.2784A146.2784 146.2784 0 1 0 743.611733 512 146.2784 146.2784 0 0 0 597.333333 365.7216z"
+            },
+            tooltip: {
+                trigger: 'axis',
+                textStyle: {
+                    fontSize: 16
+                }
+            },
+            xAxis: {
+                type: 'category',
+                axisLabel:{
+                    color:'#fff'
+                },
+                axisLine:{
+                    lineStyle:{
+                        color:'#fff'
+                    }
+                },
+                data: [
+                    moment().format('YYYY-MM-DD'),
+                    moment().subtract(1, 'days').format('YYYY-MM-DD'),
+                    moment().subtract(2, 'days').format('YYYY-MM-DD'),
+                    moment().subtract(3, 'days').format('YYYY-MM-DD'),
+                    moment().subtract(4, 'days').format('YYYY-MM-DD'),
+                    moment().subtract(5, 'days').format('YYYY-MM-DD'),
+                    moment().subtract(6, 'days').format('YYYY-MM-DD'),
+                ]
+            },
+            color: ["rgba(224,30,90,1)", "rgba(239,162,5,1)", "rgba(8,176,136,1)", "rgba(56,80,213,1)"],
+            yAxis: {
+                type: 'value',
+                axisLabel:{
+                    color:'#fff'
+                },
+            },
+            series: [{
+                name: "XX数",
+                data: [67,89,18,78,12,32,12],
+                type: 'line',
+                smooth: true
+            }, {
+                name: "YY数",
+                data: [73,32,43,76,23,64,87],
+                type: 'line',
+                smooth: true
+            }, {
+                name: "ZZ数",
+                data: [32,45,87,90,78,43,12],
+                type: 'line',
+                smooth: true
+            }]
+        };
+        this.setState({ statistics })
+    }
     render() {
         return (
             <div className='overviewWrap'>
                 <div id="Map" className="Map" />
                 <div className='headerWrap'>
                     <div />
-                    <div className='systemTitle'>明厨亮灶AI分析系统</div>
+                    <div className='systemTitle'>XXXXXXXXXX系统</div>
                     <div className='header-right'>
                         <div className='enter' onClick={() => { this.props.history.push('/main/home') }}>进入系统</div>
                         <div className='logout' onClick={() => { this.props.history.push('/') }}>退出</div>
                     </div>
                 </div>
                 <div className='leftWrap'>
-                    <div className='info1'>
-                        <div className='numberItem'><div className='title'>企业总数</div><div className='number'>{this.state.info.company}</div></div>
-                        <div className='numberItem'><div className='title'>设备总数</div><div className='number'>{this.state.info.camera}</div></div>
-                        <div className='numberItem'><div className='title'>设备在线</div><div className='number'>{this.state.info.online}</div></div>
-                        <div className='numberItem'><div className='title'>离线设备</div><div className='number offline'>{this.state.info.offline}</div></div>
-                    </div>
                     <div className='total'>
-                        <div className='numberItem'><div className='title'>累计抽查总数</div><div className='number'>{this.state.info.all ? this.state.info.all : 0}</div></div>
-                        <div className='numberItem'><div className='title'>累计AI预警总数</div><div className='number'>{this.state.info.AIall ? this.state.info.AIall : 0}</div></div>
-                        <div className='numberItem'><div className='title'>累计预警审核总数</div><div className='number'>{this.state.info.handleall ? this.state.info.handleall : 0}</div></div>
-                    </div>
-                    <div className='today'>
-                        <div className='numberItem'><div className='title'>当日实时AI预警数量</div><div className='number'>{this.state.todayInfo.AIall}</div></div>
-                        <div className='numberItem'><div className='title'>当日实时审核预警数</div><div className='number'>{this.state.todayInfo.handleall}</div></div>
+                        <div className='numberItem'><div className='title'>累计XX总数</div><div className='number'>{this.state.info.all ? this.state.info.all : 0}</div></div>
+                        <div className='numberItem'><div className='title'>XXXX总数</div><div className='number'>{this.state.info.AIall ? this.state.info.AIall : 0}</div></div>
+                        <div className='numberItem'><div className='title'>XXXX总数</div><div className='number'>{this.state.info.handleall ? this.state.info.handleall : 0}</div></div>
                     </div>
                     <div className='chart'>
-                        <div className='title-line'>月度抽查完成率</div>
+                        <div className='title-line'>环形图</div>
                         <ReactEcharts
                             option={this.state.echartsOptions}
                             style={{ width: '100%', height: '100%' }}
                         />
                     </div>
+                    <div className='chart'>
+                        <div className='title-line'>折线图</div>
+                        <ReactEcharts
+                            option={this.state.statistics}
+                            style={{ width: '380px', height: '100%' }}
+                        />
+                    </div>
                 </div>
                 <div className='rightWrap'>
                     <div className='dataTable'>
-                        <div className='title-line'>审核预警数据</div>
+                        <div className='title-line'>滚动数据</div>
                         <ScollTable />
                     </div>
                     <div className='ranking'>
-                        <div className='title-line'>学校预警排名（本月）</div>
+                        <div className='title-line'>表格排名（本月）</div>
                         <table className='rank-table'>
                             <thead>
                                 <tr>

@@ -18,7 +18,11 @@ export default class Login extends React.Component {
         })
         if (values.username && values.password) {
             let password = md5(values.password)
-            this.props.history.push("/overview");
+            if(window.g.bigData){
+                this.props.history.push("/overview");
+            }else{
+                this.props.history.push("/main/home");
+            }
         }
     }
     render() {
@@ -36,7 +40,7 @@ export default class Login extends React.Component {
                 <div className='formWrap'>
                     <div className='formTitle'>
                         <p className='hello'>你好！</p>
-                        <p className='welcome'>欢迎登录明厨亮灶AI分析系统！</p>
+                        <p className='welcome'>欢迎登录XXXXXXXX系统！</p>
                     </div>
                     <Form
                         {...layout}

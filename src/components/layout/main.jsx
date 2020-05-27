@@ -96,67 +96,127 @@ export default class Login extends React.Component {
         };
 
         return (
-            <div className='mainWrap'>
-                <div className='leftWrap'>
-                    <div className='logoWrap'>
-                        <div className={this.state.collapsed ? "" : "logobg"} />
-                    </div>
-                    <Menu
-                        mode="inline"
-                        openKeys={this.state.openKeys}
-                        onOpenChange={this.onOpenChange}
-                        selectedKeys={[this.props.history.location.pathname]}
-                        inlineCollapsed={this.state.collapsed}
-                    >
-                        {MenuConfig.menuList.map(item => {
-                            if (item.children) {
-                                return <SubMenu
-                                    key={item.key}
-                                    title={
-                                        <span>
-                                            {React.createElement(Icon[item.icon])}
-                                            <span>{item.title}</span>
-                                        </span>
-                                    }
-                                >
-                                    {item.children.map(i => {
-                                        return <Menu.Item key={i.key} onClick={() => { this.props.history.push(i.key) }}>{i.title}</Menu.Item>
-                                    })}
-                                </SubMenu>
-                            } else {
-                                return <Menu.Item key={item.key} onClick={() => { this.props.history.push(item.key) }}>{React.createElement(Icon[item.icon] ? Icon[item.icon] : "span", {}, null)}<span>{item.title}</span></Menu.Item>
-                            }
-                        })}
-                    </Menu>
-                </div>
-                <div className='rightWrap'>
-                    <div className='headerWrap'>
-                        <div className="headerCenter">
-                            <div onClick={this.toggleCollapsed} style={{ margin: '0px 10px', fontSize: 22, cursor: 'pointer' }}>
-                                {this.state.collapsed ? React.createElement(Icon["MenuUnfoldOutlined"]) : React.createElement(Icon["MenuFoldOutlined"])}
-                            </div>
-                            明厨亮灶AI分析系统
+            <div>
+                {window.g.navLeft ? <div className='mainWrap'>
+                    <div className='leftWrap'>
+                        <div className='logoWrap'>
+                            <div className={this.state.collapsed ? "" : "logobg"} />
                         </div>
-                        <div className="headerRight">
-                            {/* <div className='notApproved'>剩未审核：<span>{6666}</span></div> */}
-                            <div className='fullScreen' onClick={this.screenFull}>
-                                {this.state.fullScreen ? React.createElement(Icon["FullscreenExitOutlined"]) : React.createElement(Icon["FullscreenOutlined"])}
-                            </div>
-                            <Popover className='userInfo' placement="bottom" title="" content={
-                                <div>
-                                    <div style={{ marginBottom: '5px' }} onClick={this.showModal}><Button>修改密码</Button></div>
-                                    <div><Button onClick={this.logout}>退出系统</Button></div>
+                        <Menu
+                            mode="inline"
+                            openKeys={this.state.openKeys}
+                            onOpenChange={this.onOpenChange}
+                            selectedKeys={[this.props.history.location.pathname]}
+                            inlineCollapsed={this.state.collapsed}
+                        >
+                            {MenuConfig.menuList.map(item => {
+                                if (item.children) {
+                                    return <SubMenu
+                                        key={item.key}
+                                        title={
+                                            <span>
+                                                {React.createElement(Icon[item.icon])}
+                                                <span>{item.title}</span>
+                                            </span>
+                                        }
+                                    >
+                                        {item.children.map(i => {
+                                            return <Menu.Item key={i.key} onClick={() => { this.props.history.push(i.key) }}>{i.title}</Menu.Item>
+                                        })}
+                                    </SubMenu>
+                                } else {
+                                    return <Menu.Item key={item.key} onClick={() => { this.props.history.push(item.key) }}>{React.createElement(Icon[item.icon] ? Icon[item.icon] : "span", {}, null)}<span>{item.title}</span></Menu.Item>
+                                }
+                            })}
+                        </Menu>
+                    </div>
+                    <div className='rightWrap'>
+                        <div className='headerWrap'>
+                            <div className="headerCenter">
+                                <div onClick={this.toggleCollapsed} style={{ margin: '0px 10px', fontSize: 22, cursor: 'pointer' }}>
+                                    {this.state.collapsed ? React.createElement(Icon["MenuUnfoldOutlined"]) : React.createElement(Icon["MenuFoldOutlined"])}
                                 </div>
-                            }>
-                                <Avatar icon={React.createElement(Icon["UserOutlined"])} className='avatar' />
-                                <span>{localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).realname : null} {React.createElement(Icon["CaretDownOutlined"], { style: { fontSize: '20px' } })}</span>
-                            </Popover>
+                            XXXXXXXXXX分析系统
+                        </div>
+                            <div className="headerRight">
+                                <div className='notApproved'>剩未审核：<span>{6666}</span></div>
+                                <div className='fullScreen' onClick={this.screenFull}>
+                                    {this.state.fullScreen ? React.createElement(Icon["FullscreenExitOutlined"]) : React.createElement(Icon["FullscreenOutlined"])}
+                                </div>
+                                <Popover className='userInfo' placement="bottom" title="" content={
+                                    <div>
+                                        <div style={{ marginBottom: '5px' }} onClick={this.showModal}><Button>修改密码</Button></div>
+                                        <div><Button onClick={this.logout}>退出系统</Button></div>
+                                    </div>
+                                }>
+                                    <Avatar icon={React.createElement(Icon["UserOutlined"])} className='avatar' />
+                                    <span>Admin {React.createElement(Icon["CaretDownOutlined"], { style: { fontSize: '20px' } })}</span>
+                                </Popover>
+                            </div>
+                        </div>
+                        <div className="contentWrap">
+                            <MyRouter />
                         </div>
                     </div>
-                    <div className="contentWrap">
-                        <MyRouter />
-                    </div>
-                </div>
+                </div> :
+                    <div className='mainWrap2'>
+                        <div className='header'>
+                            <div className='header-left'>
+                                <div className="logobg" />
+                                <span>XXXXXXXXXX分析系统</span>
+                            </div>
+                            <div className='header-center'>
+                                <Menu
+                                    mode="horizontal"
+                                    openKeys={this.state.openKeys}
+                                    onOpenChange={this.onOpenChange}
+                                    selectedKeys={[this.props.history.location.pathname]}
+                                    inlineCollapsed={this.state.collapsed}
+                                >
+                                    {MenuConfig.menuList.map(item => {
+                                        if (item.children) {
+                                            return <SubMenu
+                                                key={item.key}
+                                                title={
+                                                    <span>
+                                                        {React.createElement(Icon[item.icon])}
+                                                        <span>{item.title}</span>
+                                                    </span>
+                                                }
+                                            >
+                                                {item.children.map(i => {
+                                                    return <Menu.Item key={i.key} onClick={() => { this.props.history.push(i.key) }}>{i.title}</Menu.Item>
+                                                })}
+                                            </SubMenu>
+                                        } else {
+                                            return <Menu.Item key={item.key} onClick={() => { this.props.history.push(item.key) }}>{React.createElement(Icon[item.icon] ? Icon[item.icon] : "span", {}, null)}<span>{item.title}</span></Menu.Item>
+                                        }
+                                    })}
+                                </Menu>
+                            </div>
+                            <div className='header-right'>
+                                <div className='notApproved'>剩未审核：<span>{6666}</span></div>
+                                <div className='fullScreen' onClick={this.screenFull}>
+                                    {this.state.fullScreen ? React.createElement(Icon["FullscreenExitOutlined"]) : React.createElement(Icon["FullscreenOutlined"])}
+                                </div>
+                                <Popover className='userInfo' placement="bottom" title="" content={
+                                    <div>
+                                        <div style={{ marginBottom: '5px' }} onClick={this.showModal}><Button>修改密码</Button></div>
+                                        <div><Button onClick={this.logout}>退出系统</Button></div>
+                                    </div>
+                                }>
+                                    <Avatar icon={React.createElement(Icon["UserOutlined"])} className='avatar' />
+                                    <span>Admin {React.createElement(Icon["CaretDownOutlined"], { style: { fontSize: '20px' } })}</span>
+                                </Popover>
+                            </div>
+                        </div>
+                        <div className='content'>
+                            <MyRouter />
+                        </div>
+                    </div>}
+
+
+
                 <Modal
                     title="修改密码"
                     visible={this.state.showModal}

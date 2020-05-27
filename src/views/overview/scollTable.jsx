@@ -1,91 +1,28 @@
 import React from 'react';
 import './scollTable.less';
-import { AlarmGetlist } from '../../config/apiConfig'
-import { Http } from '../../server/server'
+import Image from "../../assets/images/img.png"
 export default class EditableTable extends React.Component {
     state = {
-        data: []
+        data: [
+            { cname: 'xxxxx学校', handletime: '2020-05-27', result: ['未戴口罩', '未戴手套', '未戴帽子', '卫生情况差'] },
+            { cname: 'xxxxx学校', handletime: '2020-05-27', result: ['未戴口罩', '未戴手套', '未戴帽子', '卫生情况差'] },
+            { cname: 'yyyyyyyyyy学校', handletime: '2020-05-27', result: [ '未戴手套', '未戴帽子', '卫生情况差'] },
+            { cname: 'yyyyyyyy学校', handletime: '2020-05-27', result: ['未戴口罩', '未戴手套', '未戴帽子', '卫生情况差'] },
+            { cname: 'xxxxx学校', handletime: '2020-05-27', result: ['未戴口罩', '未戴手套', '未戴帽子', '卫生情况差'] },
+            { cname: 'zzzzzzzzz学校', handletime: '2020-05-27', result: ['未戴口罩', '未戴手套', '未戴帽子', '卫生情况差'] },
+            { cname: 'zzzzzzzzzzzzz学校', handletime: '2020-05-27', result: [ '未戴手套', '未戴帽子', '卫生情况差'] },
+            { cname: 'xxxxx学校', handletime: '2020-05-27', result: ['未戴口罩', '未戴手套', '未戴帽子', '卫生情况差'] },
+            { cname: 'xxxxx学校', handletime: '2020-05-27', result: ['未戴口罩', '卫生情况差'] },
+            { cname: 'yyyyyyyy学校', handletime: '2020-05-27', result: ['未戴口罩', '未戴手套', '未戴帽子', '卫生情况差'] },
+            { cname: 'xxxxx学校', handletime: '2020-05-27', result: ['未戴口罩', '未戴手套', '卫生情况差'] },
+            { cname: 'yyyyyyyyyy学校', handletime: '2020-05-27', result: ['未戴口罩', '未戴手套', '未戴帽子', '卫生情况差'] },
+            { cname: 'xxxxx学校', handletime: '2020-05-27', result: [ '卫生情况差'] },
+            { cname: 'xxxxx学校', handletime: '2020-05-27', result: ['未戴口罩', '未戴手套', '未戴帽子', '卫生情况差'] },
+        ]
     }
     componentDidMount = () => {
-        if(localStorage.getItem('token')){
-            Http(AlarmGetlist, { handlestatus: 2 }).then(res => {
-                let alarmInfo = JSON.parse(localStorage.getItem('alarm')).alarmInfo;
-                res.data.map(list => {
-                    let result = []
-                    let handleobject = list.handleobject?list.handleobject.split(','):[];
-                    alarmInfo.map((item, index) => {
-                        switch (item) {
-                            // eslint-disable-next-line no-lone-blocks
-                            case '口罩': {
-                                if (handleobject.indexOf(index.toString()) > -1) {
-                                    result.push('未戴口罩')
-                                } 
-                                break;
-                            };
-                            // eslint-disable-next-line no-lone-blocks
-                            case '帽子': {
-                                if (handleobject.indexOf(index.toString()) > -1) {
-                                    result.push('未戴帽子')
-                                } 
-                                break;
-                            };
-                            // eslint-disable-next-line no-lone-blocks
-                            case '手套': {
-                                if (handleobject.indexOf(index.toString()) > -1) {
-                                    result.push('未戴手套')
-                                } 
-                                break;
-                            };
-                            // eslint-disable-next-line no-lone-blocks
-                            case '香烟': {
-                                if (handleobject.indexOf(index.toString()) > -1) {
-                                    result.push('发现香烟')
-                                } 
-                                break;
-                            };
-                            // eslint-disable-next-line no-lone-blocks
-                            case '手机': {
-                                if (handleobject.indexOf(index.toString()) > -1) {
-                                    result.push('发现手机')
-                                } 
-                                break;
-                            };
-                            // eslint-disable-next-line no-lone-blocks
-                            case '生熟未分': {
-                                if (handleobject.indexOf(index.toString()) > -1) {
-                                    result.push('生熟未分')
-                                } 
-                                break;
-                            };
-                            // eslint-disable-next-line no-lone-blocks
-                            case '不明生物': {
-                                if (handleobject.indexOf(index.toString()) > -1) {
-                                    result.push('发现不明生物')
-                                } 
-                                break;
-                            };
-                            // eslint-disable-next-line no-lone-blocks
-                            case '卫生': {
-                                if (handleobject.indexOf(index.toString()) > -1) {
-                                    result.push('卫生情况差')
-                                } 
-                                break;
-                            };
-                            default: {
-    
-                            }
-                        }
-                    })
-                    list.result = result;
-                })
-    
-                this.setState({
-                    data: res.data
-                })
-            })
-            //文字无缝滚动
-            this.industryNews = setInterval(this.taskIndustryNews, 50);
-        }
+        //文字无缝滚动
+        this.industryNews = setInterval(this.taskIndustryNews, 50);
     }
     taskIndustryNews = () => {
         //console.log(this.refs.newDiv)
@@ -149,7 +86,7 @@ export default class EditableTable extends React.Component {
                     </div>
                 </span>
                 <span className='img'>
-                    <img src={item.picpath && item.picpath.search('http') == -1 ? localStorage.getItem("picpath") + item.picpath : item.picpath} alt='' style={{ width: '100%', height: '100%' }} />
+                    <img src={Image} alt='' style={{ width: '100%', height: '100%' }} />
                 </span>
             </li>
         );
