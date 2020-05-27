@@ -1,9 +1,9 @@
 // 数据看板
 import Overview from "./overview/overview"
 
-import Home from "./home/home"
-
+import GridPage from "./GridPage/gridPage"
+import TablePage from "./TablePage/tablePage"
 
 export default {
-    Home,Overview
+    GridPage,Overview,TablePage
 };

@@ -6,14 +6,18 @@ export default {
             key: "/overview",
             component: "Overview",
             icon: "FundOutlined",
-            rank:['0','1']
         },
         {
-            title: "主页",
-            key: "/main/home",
-            component: "Home",
+            title: "图片列表页",
+            key: "/main/grid",
+            component: "GridPage",
             icon: "AlertOutlined",
-            rank:['0','1']
+        },
+        {
+            title: "表格页",
+            key: "/main/table",
+            component: "TablePage",
+            icon: "AlertOutlined",
         }
     ],
 };

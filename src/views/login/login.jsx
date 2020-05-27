@@ -18,10 +18,10 @@ export default class Login extends React.Component {
         })
         if (values.username && values.password) {
             let password = md5(values.password)
-            if(window.g.bigData){
+            if(window.g.haveBigData && window.g.bigData){
                 this.props.history.push("/overview");
             }else{
-                this.props.history.push("/main/home");
+                this.props.history.push("/main/grid");
             }
         }
     }

@@ -279,7 +279,7 @@ class Overview extends React.Component {
                     <div />
                     <div className='systemTitle'>XXXXXXXXXX系统</div>
                     <div className='header-right'>
-                        <div className='enter' onClick={() => { this.props.history.push('/main/home') }}>进入系统</div>
+                        <div className='enter' onClick={() => { this.props.history.push('/main/grid') }}>进入系统</div>
                         <div className='logout' onClick={() => { this.props.history.push('/') }}>退出</div>
                     </div>
                 </div>
