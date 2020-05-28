@@ -1,6 +1,6 @@
 import React from 'react';
 import "./main.less"
-import { Menu, Popover, Button, Modal, Form, Input, message, Avatar } from 'antd';
+import { Menu, Popover, Button, Modal, Form, Input,  Avatar } from 'antd';
 import * as Icon from '@ant-design/icons';
 import screenfull from 'screenfull';
 import MenuConfig from "../../config/menuConfig"
@@ -89,6 +89,51 @@ export default class Login extends React.Component {
             })
         })
     }
+    renderMenu = () =>{
+        if(window.g.haveBigData){
+            return Object.keys(MenuConfig).map(key=>{
+                return MenuConfig[key].map(item=>{
+                    if (item.children) {
+                        return <SubMenu
+                            key={item.key}
+                            title={
+                                <span>
+                                    {React.createElement(Icon[item.icon])}
+                                    <span>{item.title}</span>
+                                </span>
+                            }
+                        >
+                            {item.children.map(i => {
+                                return <Menu.Item key={i.key} onClick={() => { this.props.history.push(i.key) }}>{i.title}</Menu.Item>
+                            })}
+                        </SubMenu>
+                    } else {
+                        return <Menu.Item key={item.key} onClick={() => { this.props.history.push(item.key) }}>{React.createElement(Icon[item.icon] ? Icon[item.icon] : "span", {}, null)}<span>{item.title}</span></Menu.Item>
+                    }
+                })
+            })
+        }else{
+            return MenuConfig.menuList.map(item => {
+                if (item.children) {
+                    return <SubMenu
+                        key={item.key}
+                        title={
+                            <span>
+                                {React.createElement(Icon[item.icon])}
+                                <span>{item.title}</span>
+                            </span>
+                        }
+                    >
+                        {item.children.map(i => {
+                            return <Menu.Item key={i.key} onClick={() => { this.props.history.push(i.key) }}>{i.title}</Menu.Item>
+                        })}
+                    </SubMenu>
+                } else {
+                    return <Menu.Item key={item.key} onClick={() => { this.props.history.push(item.key) }}>{React.createElement(Icon[item.icon] ? Icon[item.icon] : "span", {}, null)}<span>{item.title}</span></Menu.Item>
+                }
+            })
+        }
+    }
     render() {
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -109,25 +154,7 @@ export default class Login extends React.Component {
                             selectedKeys={[this.props.history.location.pathname]}
                             inlineCollapsed={this.state.collapsed}
                         >
-                            {MenuConfig.menuList.map(item => {
-                                if (item.children) {
-                                    return <SubMenu
-                                        key={item.key}
-                                        title={
-                                            <span>
-                                                {React.createElement(Icon[item.icon])}
-                                                <span>{item.title}</span>
-                                            </span>
-                                        }
-                                    >
-                                        {item.children.map(i => {
-                                            return <Menu.Item key={i.key} onClick={() => { this.props.history.push(i.key) }}>{i.title}</Menu.Item>
-                                        })}
-                                    </SubMenu>
-                                } else {
-                                    return <Menu.Item key={item.key} onClick={() => { this.props.history.push(item.key) }}>{React.createElement(Icon[item.icon] ? Icon[item.icon] : "span", {}, null)}<span>{item.title}</span></Menu.Item>
-                                }
-                            })}
+                            {this.renderMenu()}
                         </Menu>
                     </div>
                     <div className='rightWrap'>
@@ -173,25 +200,7 @@ export default class Login extends React.Component {
                                     selectedKeys={[this.props.history.location.pathname]}
                                     inlineCollapsed={this.state.collapsed}
                                 >
-                                    {MenuConfig.menuList.map(item => {
-                                        if (item.children) {
-                                            return <SubMenu
-                                                key={item.key}
-                                                title={
-                                                    <span>
-                                                        {React.createElement(Icon[item.icon])}
-                                                        <span>{item.title}</span>
-                                                    </span>
-                                                }
-                                            >
-                                                {item.children.map(i => {
-                                                    return <Menu.Item key={i.key} onClick={() => { this.props.history.push(i.key) }}>{i.title}</Menu.Item>
-                                                })}
-                                            </SubMenu>
-                                        } else {
-                                            return <Menu.Item key={item.key} onClick={() => { this.props.history.push(item.key) }}>{React.createElement(Icon[item.icon] ? Icon[item.icon] : "span", {}, null)}<span>{item.title}</span></Menu.Item>
-                                        }
-                                    })}
+                                      {this.renderMenu()}
                                 </Menu>
                             </div>
                             <div className='header-right'>

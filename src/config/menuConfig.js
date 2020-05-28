@@ -1,12 +1,13 @@
-
 export default {
-    menuList: [
+    overview: [
         {
             title: "数据看板",
             key: "/overview",
             component: "Overview",
             icon: "FundOutlined",
         },
+    ],
+    menuList: [
         {
             title: "图片列表页",
             key: "/main/grid",
@@ -20,4 +21,4 @@ export default {
             icon: "AlertOutlined",
         }
     ],
-};
+} 

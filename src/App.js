@@ -17,7 +17,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/" component={Login} />
-            <Route path="/overview" component={Overview} />
+            {window.g.haveBigData ? <Route path="/overview" component={Overview} /> : null}
             <Route path="/main" component={Main} />
             <Route path="/404" component={NotFound} />
             <Route path="/403" component={NotAuthorized} />
