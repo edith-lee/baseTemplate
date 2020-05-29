@@ -12,13 +12,19 @@ export default {
             title: "图片列表页",
             key: "/main/grid",
             component: "GridPage",
-            icon: "AlertOutlined",
+            icon: "PictureOutlined",
         },
         {
             title: "表格页",
             key: "/main/table",
             component: "TablePage",
-            icon: "AlertOutlined",
+            icon: "InsertRowAboveOutlined",
+        },
+        {
+            title: "时间线",
+            key: "/main/timeline",
+            component: "TimeLinePage",
+            icon: "AlignLeftOutlined",
         }
     ],
 } 
