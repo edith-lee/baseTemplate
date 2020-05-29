@@ -57,6 +57,9 @@
             border-left: 3px solid #fff;
             border-right: none;
         }
+        .ant-menu-submenu-open,.ant-menu-submenu-active{
+            color: #fff;
+        }
         .ant-menu-submenu-vertical > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after, .ant-menu-submenu-vertical-left > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after, .ant-menu-submenu-vertical-right > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after, .ant-menu-submenu-inline > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after, .ant-menu-submenu-vertical > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before, .ant-menu-submenu-vertical-left > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before, .ant-menu-submenu-vertical-right > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before, .ant-menu-submenu-inline > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before {
             background: -webkit-gradient(linear, left top, right top, from(#FFF), to(#FFF));
             background: linear-gradient(to right, #FFF, #FFF);
@@ -179,6 +182,9 @@
                 color: #fff;
                 border-bottom: 2px solid #fff;
                 background-color: #2d4dc8;
+            }
+            .ant-menu-item:hover, .ant-menu-item-active, .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open, .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
+                color: #fff;
             }
         }
         .header-right{

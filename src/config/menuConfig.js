@@ -13,6 +13,20 @@ export default {
             key: "/main/grid",
             component: "GridPage",
             icon: "PictureOutlined",
+            // children: [
+            //     {
+            //         title: "表格页",
+            //         key: "/main/table1",
+            //         component: "TablePage",
+            //         icon: "InsertRowAboveOutlined",
+            //     },
+            //     {
+            //         title: "表格页",
+            //         key: "/main/table2",
+            //         component: "TablePage",
+            //         icon: "InsertRowAboveOutlined",
+            //     },
+            // ]
         },
         {
             title: "表格页",
