@@ -5,10 +5,11 @@ import { UserOutlined, LockOutlined, SecurityScanOutlined } from '@ant-design/ic
 import md5 from 'js-md5'
 import VerificationCode from './verificationCode'
 export default class Login extends React.Component {
+    formRef = React.createRef();
     state = {
         loading: false,
         showVerify: true,  //是否显示验证码
-        code:'s7Gy',  //验证码
+        code: 'T7Gy',  //验证码
     }
     componentDidMount = () => {
     }
@@ -16,14 +17,23 @@ export default class Login extends React.Component {
         this.setState({
             loading: true
         })
-        if (values.username && values.password) {
-            let password = md5(values.password)
-            if (window.g.haveBigData && window.g.bigData) {
-                this.props.history.push("/overview");
-            } else {
-                this.props.history.push("/main/grid");
+        if (this.state.showVerify && values.verificationCode != this.state.code) {
+            message.error('您输入的验证码不正确')
+            this.setState({
+                loading: false
+            })
+        } else {
+            if (values.username && values.password) {
+                let password = md5(values.password)
+                if (window.g.haveBigData && window.g.bigData) {
+                    this.props.history.push("/overview");
+                } else {
+                    this.props.history.push("/main/grid");
+                }
             }
         }
+
+
     }
     render() {
         let layout = {
@@ -47,6 +57,7 @@ export default class Login extends React.Component {
                         name="basic"
                         hideRequiredMark={true}
                         onFinish={this.onSubmit}
+                        ref={this.formRef}
                     >
                         <Form.Item
                             label=""
@@ -85,7 +96,7 @@ export default class Login extends React.Component {
                         >
                             <div className='verification'>
                                 <Input prefix={<SecurityScanOutlined style={{ color: '#cccccc', fontSize: '26px' }} />} placeholder='请输入验证码' className='codeWrap' />
-                                <VerificationCode code={this.state.code}/>
+                                <VerificationCode code={this.state.code} />
                             </div>
                         </Form.Item> : null}
                         <Form.Item style={{ textAlign: 'right' }} {...center}>
