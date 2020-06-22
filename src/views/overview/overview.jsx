@@ -14,15 +14,14 @@ class Overview extends React.Component {
             {cname:'zzzzz学校',count:188},
             {cname:'aaaaa学校',count:150},
         ],  //学校预警排名
-        echartsOptions: {},
-        statistics:{}
+        echartsOptions: {}, // 环形图options
+        statistics:{} // 折线图options
     };
-    map = {};
+    map = {}; // 地图实例对象
     componentDidMount = () => {
-
-        this.setMap();
-        this.setEchartsOption();
-        this.statistics();
+        this.setMap();   // 设置地图
+        this.setEchartsOption();  // 设置环形图
+        this.statistics();  // 设置折线图
     }
     // 设置地图
     setMap = () => {
@@ -207,6 +206,7 @@ class Overview extends React.Component {
             echartsOptions
         })
     }
+    // 折线图
     statistics = () => {
         let statistics = {
             legend: {

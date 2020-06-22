@@ -33,8 +33,6 @@ export default class EditableTable extends React.Component {
             this.refs.newDiv.scrollTop += 1;
         }
     }
-
-
     handleIndustryNewsEnter = () => {
         clearInterval(this.industryNews);
     }
@@ -65,9 +63,7 @@ export default class EditableTable extends React.Component {
             </div>
         );
     }
-
     tableBody = (item, index) => {
-        //console.log(item)
         return (
             <li key={index}>
                 <span className='name' title={item.cname}>

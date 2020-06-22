@@ -90,6 +90,7 @@ class TablePage extends React.Component {
     componentDidMount = () => {
         this.getList()
     }
+    // 获取数据
     getList = () => {
         let tableData = [
             {
@@ -115,6 +116,7 @@ class TablePage extends React.Component {
             tableData
         })
     }
+    // 搜索函数
     handleSearch = values => {
         let pagination = this.state.pagination
         pagination.current = 1
@@ -125,6 +127,7 @@ class TablePage extends React.Component {
             //this.getList()
         })
     }
+    // 翻页函数
     paginationChange = pagination => {
         this.setState({
             pagination
@@ -132,6 +135,7 @@ class TablePage extends React.Component {
             //this.getList()
         })
     }
+    // 新增编辑弹窗
     showModal = values => {
         if (values == 'add') {
             this.setState({
@@ -150,6 +154,7 @@ class TablePage extends React.Component {
             })
         }
     }
+    // 新增编辑保存
     handleModalOk = () => {
         if (this.state.current == 'add') {
             //新增
@@ -191,6 +196,7 @@ class TablePage extends React.Component {
             })
         }
     }
+    // 新增弹窗取消
     handleModalCancel = () => {
         this.formRef.current.resetFields();
         this.setState({

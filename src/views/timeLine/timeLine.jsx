@@ -42,6 +42,7 @@ export default class TimeLine extends React.Component {
             },
         ]
     }
+    // 详情弹窗显示
     showModal = (item) =>{
         let detail = {
             mask:true,
@@ -63,6 +64,7 @@ export default class TimeLine extends React.Component {
             showDetailModal: true
         })
     }
+    // 详情弹窗关闭
     handleModalCancel = () => {
         this.setState({
             showDetailModal: false,

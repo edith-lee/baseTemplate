@@ -12,7 +12,7 @@ import Image from '../../assets/images/img.png'
 import BigImage from '../../assets/images/bigImg.png'
 class GridPage extends React.Component {
     state = {
-        pagination: {
+        pagination: {   //翻页
             total: 70,
             pageSize: 12,
             current: 1
@@ -136,7 +136,8 @@ class GridPage extends React.Component {
             warningList
         })
     }
-    handleSearch = values => {
+    // 搜索函数
+    handleSearch = values => {  
         let search = {}
         search.cname = values.cname;
         if (values.searchTime && values.searchTime.length == 2) {
@@ -158,6 +159,7 @@ class GridPage extends React.Component {
             this.getList()
         })
     }
+    // 翻页函数
     paginationChange = pagination => {
         this.setState({
             pagination
@@ -165,6 +167,7 @@ class GridPage extends React.Component {
             this.getList()
         })
     }
+    // 显示详情弹窗函数
     showDetailModal = item => {
         let detail = {
             mask:true,
@@ -186,6 +189,7 @@ class GridPage extends React.Component {
             showDetailModal: true
         })
     }
+    // 详情弹窗关闭函数
     handleModalCancel = () => {
         this.setState({
             showDetailModal: false,
@@ -195,6 +199,7 @@ class GridPage extends React.Component {
             yScale: 0,
         })
     }
+    // 画图函数
     draw = () => {
         let ele = document.getElementById("AICanvas");
         let ctx = ele.getContext("2d");
